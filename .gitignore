@@ -1,0 +1,11 @@
+/target
+.settings
+.idea
+sonar-project.properties
+/bin/
+./gmailpwd.txt
+/src/main/main.iml
+/src/test/test.iml
+*.iml
+./build.sh
+./db.sh
