@@ -5,10 +5,11 @@ import io.classicmodels.entity.Customer;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class CustomerDAOImpl extends BaseDAOImpl<Customer, Integer> implements CustomerDAO {
 
-    @Inject
+    @PersistenceContext
     private EntityManager entityManager;
 
     protected CustomerDAOImpl() {

@@ -6,10 +6,11 @@ import io.classicmodels.entity.OrderDetail;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class OrderDetailDAOImpl extends BaseDAOImpl<OrderDetail, Order> implements OrderDetailDAO {
 
-    @Inject
+    @PersistenceContext
     private EntityManager entityManager;
 
     protected OrderDetailDAOImpl() {

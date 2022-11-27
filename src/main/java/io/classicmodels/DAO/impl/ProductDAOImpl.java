@@ -5,10 +5,11 @@ import io.classicmodels.entity.Product;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class ProductDAOImpl extends BaseDAOImpl<Product, String> implements ProductDAO {
 
-    @Inject
+    @PersistenceContext
     private EntityManager entityManager;
 
     protected ProductDAOImpl() {

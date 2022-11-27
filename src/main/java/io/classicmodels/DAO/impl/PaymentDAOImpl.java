@@ -5,10 +5,11 @@ import io.classicmodels.entity.Payment;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class PaymentDAOImpl extends BaseDAOImpl<Payment, String> implements PaymentDAO {
 
-    @Inject
+    @PersistenceContext
     private EntityManager entityManager;
 
     protected PaymentDAOImpl() {

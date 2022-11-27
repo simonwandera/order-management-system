@@ -1,8 +1,6 @@
 package io.classicmodels.entity;
 
-import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 public class Product implements Serializable {
 
     @Id
-    @Column(name = "productCode", nullable = false, updatable = false)
+    @Column(name = "productCode", nullable = false, length = 50)
     private String productCode;
 
     @Column(name = "productName")

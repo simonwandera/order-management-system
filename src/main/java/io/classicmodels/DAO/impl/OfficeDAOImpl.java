@@ -5,9 +5,11 @@ import io.classicmodels.entity.Office;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class OfficeDAOImpl extends BaseDAOImpl<Office, String> implements OfficeDAO {
-    @Inject
+
+    @PersistenceContext
     private EntityManager entityManager;
 
     protected OfficeDAOImpl() {
