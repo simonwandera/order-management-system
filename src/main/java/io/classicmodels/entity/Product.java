@@ -29,7 +29,7 @@ public class Product extends BaseEntity {
     private ProductLine productline;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Orderdetail> orderDetail;
+    private List<OrderDetail> orderDetail;
 
     public String getProductName() {
         return productName;
@@ -88,11 +88,11 @@ public class Product extends BaseEntity {
         this.msrp = msrp;
     }
 
-    public List<Orderdetail> getOrderDetail() {
+    public List<OrderDetail> getOrderDetail() {
         return orderDetail;
     }
 
-    public void setOrderDetail(List<Orderdetail> orderdetail) {
+    public void setOrderDetail(List<OrderDetail> orderdetail) {
         this.orderDetail = orderdetail;
     }
 

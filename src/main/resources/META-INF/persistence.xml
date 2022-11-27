@@ -8,7 +8,7 @@
         <class>io.classicmodels.entity.Customers</class>
         <class>io.classicmodels.entity.Employees</class>
         <class>io.classicmodels.entity.Offices</class>
-        <class>io.classicmodels.entity.Orderdetail</class>
+        <class>io.classicmodels.entity.OrderDetail</class>
         <class>io.classicmodels.entity.Orders</class>
         <class>io.classicmodels.entity.Payments</class>
         <class>io.classicmodels.entity.ProductLine</class>

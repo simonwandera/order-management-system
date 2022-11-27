@@ -2,69 +2,32 @@ package io.classicmodels.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Orders extends BaseEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "orderNumber")
-    private int orderNumber;
-    @Basic
+
     @Column(name = "orderDate")
-    private Date orderDate;
-    @Basic
+    private LocalDate orderDate;
+
     @Column(name = "requiredDate")
-    private Date requiredDate;
-    @Basic
+    private LocalDate requiredDate;
+
     @Column(name = "shippedDate")
-    private Date shippedDate;
-    @Basic
+    private LocalDate shippedDate;
     @Column(name = "status")
     private String status;
-    @Basic
     @Column(name = "comments")
     private String comments;
-    @Basic
-    @Column(name = "customerNumber")
-    private int customerNumber;
-    @OneToMany(mappedBy = "ordersByOrderNumber")
-    private Collection<Orderdetail> orderdetailByOrderNumber;
+
     @ManyToOne
-    @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber", nullable = false)
-    private Customers customersByCustomerNumber;
+    @JoinColumn(name = "customerNumber", referencedColumnName = "id")
+    private Customers customers;
 
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Date getRequiredDate() {
-        return requiredDate;
-    }
-
-    public void setRequiredDate(Date requiredDate) {
-        this.requiredDate = requiredDate;
-    }
-
-    public Date getShippedDate() {
-        return shippedDate;
-    }
-
-    public void setShippedDate(Date shippedDate) {
-        this.shippedDate = shippedDate;
-    }
+    @OneToMany(mappedBy = "orders", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetail;
 
     public String getStatus() {
         return status;
@@ -81,59 +44,43 @@ public class Orders extends BaseEntity {
     public void setComments(String comments) {
         this.comments = comments;
     }
-
-    public int getCustomerNumber() {
-        return customerNumber;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setCustomerNumber(int customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Orders orders = (Orders) o;
-
-        if (orderNumber != orders.orderNumber) return false;
-        if (customerNumber != orders.customerNumber) return false;
-        if (orderDate != null ? !orderDate.equals(orders.orderDate) : orders.orderDate != null) return false;
-        if (requiredDate != null ? !requiredDate.equals(orders.requiredDate) : orders.requiredDate != null)
-            return false;
-        if (shippedDate != null ? !shippedDate.equals(orders.shippedDate) : orders.shippedDate != null) return false;
-        if (status != null ? !status.equals(orders.status) : orders.status != null) return false;
-        if (comments != null ? !comments.equals(orders.comments) : orders.comments != null) return false;
-
-        return true;
+    public LocalDate getRequiredDate() {
+        return requiredDate;
     }
 
-    @Override
-    public int hashCode() {
-        int result = orderNumber;
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        result = 31 * result + (requiredDate != null ? requiredDate.hashCode() : 0);
-        result = 31 * result + (shippedDate != null ? shippedDate.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (comments != null ? comments.hashCode() : 0);
-        result = 31 * result + customerNumber;
-        return result;
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
     }
 
-    public Collection<Orderdetail> getOrderdetailsByOrderNumber() {
-        return orderdetailByOrderNumber;
+    public LocalDate getShippedDate() {
+        return shippedDate;
     }
 
-    public void setOrderdetailsByOrderNumber(Collection<Orderdetail> orderdetailByOrderNumber) {
-        this.orderdetailByOrderNumber = orderdetailByOrderNumber;
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
     }
 
-    public Customers getCustomersByCustomerNumber() {
-        return customersByCustomerNumber;
+    public List<OrderDetail> getOrderDetail() {
+        return orderDetail;
     }
 
-    public void setCustomersByCustomerNumber(Customers customersByCustomerNumber) {
-        this.customersByCustomerNumber = customersByCustomerNumber;
+    public void setOrderDetail(List<OrderDetail> orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    public Customers getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Customers customers) {
+        this.customers = customers;
     }
 }
