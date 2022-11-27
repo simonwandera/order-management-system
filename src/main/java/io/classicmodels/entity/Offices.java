@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "offices")
 public class Offices  extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
