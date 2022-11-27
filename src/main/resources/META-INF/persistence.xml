@@ -5,15 +5,6 @@
     <persistence-unit name="classicmodels" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/classicmodels</jta-data-source>
 
-        <class>io.classicmodels.entity.Customer</class>
-        <class>io.classicmodels.entity.Employee</class>
-        <class>io.classicmodels.entity.Office</class>
-        <class>io.classicmodels.entity.OrderDetail</class>
-        <class>io.classicmodels.entity.Orders</class>
-        <class>io.classicmodels.entity.Payment</class>
-        <class>io.classicmodels.entity.ProductLine</class>
-        <class>io.classicmodels.entity.Product</class>
-
 
         <properties>
 
@@ -48,9 +39,7 @@
 
             <!-- flush mysql to clear error connections -->
             <property name="hibernate.flushMode" value="FLUSH_AUTO" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/classicmodels"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value="root"/>
+
 
             <!--<property name="hibernate.globally_quoted_identifiers" value="true"/>-->
 

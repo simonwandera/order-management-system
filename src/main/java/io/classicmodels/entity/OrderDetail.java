@@ -13,39 +13,30 @@ import java.math.BigDecimal;
 public class OrderDetail implements Serializable {
 
     @Id
-    @Column(name = "orderNumber", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
     @JsonbProperty(value = "orderNumber")
-    private int orderNumber;
+    private Orders orders;
 
     @Column(name = "quantityOrdered")
-    private int quantityOrdered;
+    private Integer quantityOrdered;
     @Column(name = "priceEach")
     private BigDecimal priceEach;
     @Column(name = "orderLineNumber")
     private short orderLineNumber;
-    @ManyToOne
-    @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber")
-    private Orders orders;
+
     @ManyToOne
     @JoinColumn(name = "productCode", referencedColumnName = "productCode")
     private Product product;
 
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setQuantityOrdered(Integer quantityOrdered) {
+        this.quantityOrdered = quantityOrdered;
     }
 
     public int getQuantityOrdered() {
         return quantityOrdered;
     }
 
-    public void setQuantityOrdered(int quantityOrdered) {
-        this.quantityOrdered = quantityOrdered;
-    }
 
     public BigDecimal getPriceEach() {
         return priceEach;

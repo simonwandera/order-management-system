@@ -21,8 +21,6 @@ public class Employee implements Serializable {
     private String extension;
     @Column(name = "email")
     private String email;
-    @Column(name = "officeCode")
-    private String officeCode;
 
     @ManyToOne
     @JoinColumn(name = "reportsTo", referencedColumnName = "employeeNumber", nullable = true)
@@ -31,15 +29,12 @@ public class Employee implements Serializable {
     @Column(name = "jobTitle")
     private String jobTitle;
 
-    @OneToMany(mappedBy = "salesRep", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "salesRep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Customer> customers;
 
     @ManyToOne
     @JoinColumn(name = "officeCode", referencedColumnName = "officeCode", nullable = false)
     private Office office;
-
-    @OneToMany(mappedBy = "reportsTo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Employee> employeeByReportsTo;
 
     public Integer getEmployeeNumber() {
         return employeeNumber;
@@ -81,14 +76,6 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public String getOfficeCode() {
-        return officeCode;
-    }
-
-    public void setOfficeCode(String officeCode) {
-        this.officeCode = officeCode;
-    }
-
     public String getJobTitle() {
         return jobTitle;
     }
@@ -119,13 +106,5 @@ public class Employee implements Serializable {
 
     public void setOffice(Office office) {
         this.office = office;
-    }
-
-    public List<Employee> getEmployeeByReportsTo() {
-        return employeeByReportsTo;
-    }
-
-    public void setEmployeeByReportsTo(List<Employee> employeeByReportsTo) {
-        this.employeeByReportsTo = employeeByReportsTo;
     }
 }
