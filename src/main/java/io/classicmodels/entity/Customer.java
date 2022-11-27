@@ -2,7 +2,6 @@ package io.classicmodels.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -36,7 +35,7 @@ public class Customer extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "salesRepEmployeeNumber", referencedColumnName = "id")
-    private Employees salesRep;
+    private Employee salesRep;
 
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -45,11 +44,11 @@ public class Customer extends BaseEntity{
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Payments> payments;
 
-    public Employees getSalesRep() {
+    public Employee getSalesRep() {
         return salesRep;
     }
 
-    public void setSalesRep(Employees salesRep) {
+    public void setSalesRep(Employee salesRep) {
         this.salesRep = salesRep;
     }
 

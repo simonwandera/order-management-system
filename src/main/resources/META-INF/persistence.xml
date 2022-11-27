@@ -6,8 +6,8 @@
         <jta-data-source>java:jboss/datasources/classicmodels</jta-data-source>
 
         <class>io.classicmodels.entity.Customer</class>
-        <class>io.classicmodels.entity.Employees</class>
-        <class>io.classicmodels.entity.Offices</class>
+        <class>io.classicmodels.entity.Employee</class>
+        <class>io.classicmodels.entity.Office</class>
         <class>io.classicmodels.entity.OrderDetail</class>
         <class>io.classicmodels.entity.Orders</class>
         <class>io.classicmodels.entity.Payments</class>
