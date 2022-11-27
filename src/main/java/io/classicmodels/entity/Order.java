@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Orders implements Serializable {
+public class Order implements Serializable {
 
     @Id
     @Column(name = "orderNumber", nullable = false)
@@ -32,7 +32,7 @@ public class Orders implements Serializable {
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
     private Customer customer;
 
-    @OneToMany(mappedBy = "orders", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetail;
 
 

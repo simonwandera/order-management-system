@@ -44,7 +44,7 @@ public class Customer implements Serializable {
 
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Orders> orders;
+    private List<Order> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Payment> payments;
@@ -69,11 +69,11 @@ public class Customer implements Serializable {
         this.salesRep = salesRep;
     }
 
-    public List<Orders> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Orders> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 

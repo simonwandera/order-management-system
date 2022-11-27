@@ -1,8 +1,5 @@
 package io.classicmodels.entity;
 
-import lombok.AccessLevel;
-import lombok.Setter;
-
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +13,7 @@ public class OrderDetail implements Serializable {
     @ManyToOne
     @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
     @JsonbProperty(value = "orderNumber")
-    private Orders orders;
+    private Order order;
 
     @Column(name = "quantityOrdered")
     private Integer quantityOrdered;
@@ -55,12 +52,12 @@ public class OrderDetail implements Serializable {
     }
 
 
-    public Orders getOrders() {
-        return orders;
+    public Order getOrders() {
+        return order;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public void setOrders(Order order) {
+        this.order = order;
     }
 
     public Product getProduct() {
