@@ -29,7 +29,7 @@ public class Orders extends BaseEntity {
     @Column(name = "customerNumber")
     private int customerNumber;
     @OneToMany(mappedBy = "ordersByOrderNumber")
-    private Collection<Orderdetails> orderdetailsByOrderNumber;
+    private Collection<Orderdetail> orderdetailByOrderNumber;
     @ManyToOne
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber", nullable = false)
     private Customers customersByCustomerNumber;
@@ -121,12 +121,12 @@ public class Orders extends BaseEntity {
         return result;
     }
 
-    public Collection<Orderdetails> getOrderdetailsByOrderNumber() {
-        return orderdetailsByOrderNumber;
+    public Collection<Orderdetail> getOrderdetailsByOrderNumber() {
+        return orderdetailByOrderNumber;
     }
 
-    public void setOrderdetailsByOrderNumber(Collection<Orderdetails> orderdetailsByOrderNumber) {
-        this.orderdetailsByOrderNumber = orderdetailsByOrderNumber;
+    public void setOrderdetailsByOrderNumber(Collection<Orderdetail> orderdetailByOrderNumber) {
+        this.orderdetailByOrderNumber = orderdetailByOrderNumber;
     }
 
     public Customers getCustomersByCustomerNumber() {

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @IdClass(OrderdetailsPK.class)
-public class Orderdetails extends BaseEntity {
+public class Orderdetail extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "orderNumber")
@@ -28,7 +28,7 @@ public class Orderdetails extends BaseEntity {
     private Orders ordersByOrderNumber;
     @ManyToOne
     @JoinColumn(name = "productCode", referencedColumnName = "productCode", nullable = false)
-    private Products productsByProductCode;
+    private Product productByProductCode;
 
     public int getOrderNumber() {
         return orderNumber;
@@ -75,7 +75,7 @@ public class Orderdetails extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Orderdetails that = (Orderdetails) o;
+        Orderdetail that = (Orderdetail) o;
 
         if (orderNumber != that.orderNumber) return false;
         if (quantityOrdered != that.quantityOrdered) return false;
@@ -104,11 +104,11 @@ public class Orderdetails extends BaseEntity {
         this.ordersByOrderNumber = ordersByOrderNumber;
     }
 
-    public Products getProductsByProductCode() {
-        return productsByProductCode;
+    public Product getProductsByProductCode() {
+        return productByProductCode;
     }
 
-    public void setProductsByProductCode(Products productsByProductCode) {
-        this.productsByProductCode = productsByProductCode;
+    public void setProductsByProductCode(Product productByProductCode) {
+        this.productByProductCode = productByProductCode;
     }
 }
