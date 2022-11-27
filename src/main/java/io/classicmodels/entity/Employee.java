@@ -1,5 +1,6 @@
 package io.classicmodels.entity;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -8,10 +9,10 @@ import java.util.List;
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "employeeNumber")
-    private int employeeNumber;
+    @JsonbProperty(value = "employeeNumber")
+    private Integer employeeNumber;
     @Column(name = "lastName")
     private String lastName;
     @Column(name = "firstName")
@@ -33,7 +34,6 @@ public class Employee implements Serializable {
     @OneToMany(mappedBy = "salesRep", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customers;
 
-
     @ManyToOne
     @JoinColumn(name = "officeCode", referencedColumnName = "officeCode", nullable = false)
     private Office office;
@@ -41,11 +41,11 @@ public class Employee implements Serializable {
     @OneToMany(mappedBy = "reportsTo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Employee> employeeByReportsTo;
 
-    public int getEmployeeNumber() {
+    public Integer getEmployeeNumber() {
         return employeeNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
+    public void setEmployeeNumber(Integer employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 

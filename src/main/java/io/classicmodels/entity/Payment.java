@@ -1,13 +1,17 @@
 package io.classicmodels.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "payments")
-public class Payments extends BaseEntity{
+public class Payment implements Serializable {
+
+    @Id
+    @Column(name = "checkNumber", nullable = false, length = 50)
+    private String checkNumber;
 
     @Column(name = "paymentDate")
     private LocalDate paymentDate;
@@ -15,8 +19,16 @@ public class Payments extends BaseEntity{
     private BigDecimal amount;
 
     @ManyToOne
-    @JoinColumn(name = "customerNumber", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber", nullable = false)
     private Customer customer;
+
+    public String getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(String checkNumber) {
+        this.checkNumber = checkNumber;
+    }
 
     public BigDecimal getAmount() {
         return amount;

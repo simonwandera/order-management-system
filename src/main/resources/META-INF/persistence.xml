@@ -10,7 +10,7 @@
         <class>io.classicmodels.entity.Office</class>
         <class>io.classicmodels.entity.OrderDetail</class>
         <class>io.classicmodels.entity.Orders</class>
-        <class>io.classicmodels.entity.Payments</class>
+        <class>io.classicmodels.entity.Payment</class>
         <class>io.classicmodels.entity.ProductLine</class>
         <class>io.classicmodels.entity.Product</class>
 

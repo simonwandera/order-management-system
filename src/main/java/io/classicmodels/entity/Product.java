@@ -1,12 +1,19 @@
 package io.classicmodels.entity;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Product extends BaseEntity {
+public class Product implements Serializable {
+
+    @Id
+    @Column(name = "productCode", nullable = false, updatable = false)
+    private String productCode;
 
     @Column(name = "productName")
     private String productName;
@@ -25,7 +32,7 @@ public class Product extends BaseEntity {
     private BigDecimal msrp;
 
     @ManyToOne
-    @JoinColumn(name = "productLine", referencedColumnName = "id")
+    @JoinColumn(name = "productLine", referencedColumnName = "productLine")
     private ProductLine productline;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -102,5 +109,13 @@ public class Product extends BaseEntity {
 
     public void setProductline(ProductLine productLineByProductLine) {
         this.productline = productLineByProductLine;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 }

@@ -1,12 +1,19 @@
 package io.classicmodels.entity;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Orders extends BaseEntity {
+public class Orders implements Serializable {
+
+    @Id
+    @Column(name = "orderNumber", nullable = false)
+    @JsonbProperty(value = "orderNumber")
+    private Integer orderNumber;
 
     @Column(name = "orderDate")
     private LocalDate orderDate;
@@ -22,11 +29,28 @@ public class Orders extends BaseEntity {
     private String comments;
 
     @ManyToOne
-    @JoinColumn(name = "customerNumber", referencedColumnName = "id")
+    @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
     private Customer customer;
 
     @OneToMany(mappedBy = "orders", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetail;
+
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public String getStatus() {
         return status;
@@ -75,11 +99,4 @@ public class Orders extends BaseEntity {
         this.orderDetail = orderDetail;
     }
 
-    public Customer getCustomers() {
-        return customer;
-    }
-
-    public void setCustomers(Customer customer) {
-        this.customer = customer;
-    }
 }

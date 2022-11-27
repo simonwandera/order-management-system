@@ -1,12 +1,19 @@
 package io.classicmodels.entity;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table(name = "customers")
-public class Customer extends BaseEntity{
+public class Customer implements Serializable {
+
+    @Id
+    @Column(name = "customerNumber", nullable = false)
+    @JsonbProperty(value = "customerNumber")
+    private Integer customerNumber;
 
     @Column(name = "customerName")
     private String customerName;
@@ -28,13 +35,11 @@ public class Customer extends BaseEntity{
     private String postalCode;
     @Column(name = "country")
     private String country;
-    @Column(name = "salesRepEmployeeNumber")
-    private Integer salesRepEmployeeNumber;
     @Column(name = "creditLimit")
     private BigDecimal creditLimit;
 
     @ManyToOne
-    @JoinColumn(name = "salesRepEmployeeNumber", referencedColumnName = "id")
+    @JoinColumn(name = "salesRepEmployeeNumber", referencedColumnName = "employeeNumber")
     private Employee salesRep;
 
 
@@ -42,7 +47,19 @@ public class Customer extends BaseEntity{
     private List<Orders> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Payments> payments;
+    private List<Payment> payments;
+
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
+    public int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(int customerNumber) {
+        this.customerNumber = customerNumber;
+    }
 
     public Employee getSalesRep() {
         return salesRep;
@@ -60,11 +77,11 @@ public class Customer extends BaseEntity{
         this.orders = orders;
     }
 
-    public List<Payments> getPayments() {
+    public List<Payment> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Payments> payments) {
+    public void setPayments(List<Payment> payments) {
         this.payments = payments;
     }
 
@@ -148,13 +165,6 @@ public class Customer extends BaseEntity{
         this.country = country;
     }
 
-    public Integer getSalesRepEmployeeNumber() {
-        return salesRepEmployeeNumber;
-    }
-
-    public void setSalesRepEmployeeNumber(Integer salesRepEmployeeNumber) {
-        this.salesRepEmployeeNumber = salesRepEmployeeNumber;
-    }
 
     public BigDecimal getCreditLimit() {
         return creditLimit;

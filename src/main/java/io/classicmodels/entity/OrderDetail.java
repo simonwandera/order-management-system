@@ -1,11 +1,21 @@
 package io.classicmodels.entity;
 
+import lombok.AccessLevel;
+import lombok.Setter;
+
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "orderdetails")
-public class OrderDetail extends BaseEntity {
+public class OrderDetail implements Serializable {
+
+    @Id
+    @Column(name = "orderNumber", nullable = false)
+    @JsonbProperty(value = "orderNumber")
+    private int orderNumber;
 
     @Column(name = "quantityOrdered")
     private int quantityOrdered;
@@ -14,12 +24,20 @@ public class OrderDetail extends BaseEntity {
     @Column(name = "orderLineNumber")
     private short orderLineNumber;
     @ManyToOne
-    @JoinColumn(name = "orderNumber", referencedColumnName = "id")
+    @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber")
     private Orders orders;
     @ManyToOne
-    @JoinColumn(name = "productCode", referencedColumnName = "id")
+    @JoinColumn(name = "productCode", referencedColumnName = "productCode")
     private Product product;
 
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
     public int getQuantityOrdered() {
         return quantityOrdered;
