@@ -31,7 +31,7 @@ public class Employees  extends BaseEntity{
     @Column(name = "jobTitle")
     private String jobTitle;
     @OneToMany(mappedBy = "employeesBySalesRepEmployeeNumber")
-    private Collection<Customers> customersByEmployeeNumber;
+    private Collection<Customer> customerByEmployeeNumber;
     @ManyToOne
     @JoinColumn(name = "officeCode", referencedColumnName = "officeCode", nullable = false)
     private Offices officesByOfficeCode;
@@ -137,12 +137,12 @@ public class Employees  extends BaseEntity{
         return result;
     }
 
-    public Collection<Customers> getCustomersByEmployeeNumber() {
-        return customersByEmployeeNumber;
+    public Collection<Customer> getCustomersByEmployeeNumber() {
+        return customerByEmployeeNumber;
     }
 
-    public void setCustomersByEmployeeNumber(Collection<Customers> customersByEmployeeNumber) {
-        this.customersByEmployeeNumber = customersByEmployeeNumber;
+    public void setCustomersByEmployeeNumber(Collection<Customer> customerByEmployeeNumber) {
+        this.customerByEmployeeNumber = customerByEmployeeNumber;
     }
 
     public Offices getOfficesByOfficeCode() {

@@ -1,12 +1,11 @@
 package io.classicmodels.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "orders")
 public class Orders extends BaseEntity {
 
     @Column(name = "orderDate")
@@ -24,7 +23,7 @@ public class Orders extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "customerNumber", referencedColumnName = "id")
-    private Customers customers;
+    private Customer customer;
 
     @OneToMany(mappedBy = "orders", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetail;
@@ -76,11 +75,11 @@ public class Orders extends BaseEntity {
         this.orderDetail = orderDetail;
     }
 
-    public Customers getCustomers() {
-        return customers;
+    public Customer getCustomers() {
+        return customer;
     }
 
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
+    public void setCustomers(Customer customer) {
+        this.customer = customer;
     }
 }

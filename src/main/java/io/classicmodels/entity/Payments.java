@@ -23,7 +23,7 @@ public class Payments extends BaseEntity{
     private BigDecimal amount;
     @ManyToOne
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber", nullable = false)
-    private Customers customersByCustomerNumber;
+    private Customer customerByCustomerNumber;
 
     public int getCustomerNumber() {
         return customerNumber;
@@ -83,11 +83,11 @@ public class Payments extends BaseEntity{
         return result;
     }
 
-    public Customers getCustomersByCustomerNumber() {
-        return customersByCustomerNumber;
+    public Customer getCustomersByCustomerNumber() {
+        return customerByCustomerNumber;
     }
 
-    public void setCustomersByCustomerNumber(Customers customersByCustomerNumber) {
-        this.customersByCustomerNumber = customersByCustomerNumber;
+    public void setCustomersByCustomerNumber(Customer customerByCustomerNumber) {
+        this.customerByCustomerNumber = customerByCustomerNumber;
     }
 }
