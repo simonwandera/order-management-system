@@ -4,9 +4,13 @@ import io.classicmodels.DAO.ProductLineDAO;
 import io.classicmodels.entity.ProductLine;
 import io.classicmodels.service.ProductLineService;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Remote
+@Stateless
 public class ProductLineServiceImpl implements ProductLineService {
 
     @Inject

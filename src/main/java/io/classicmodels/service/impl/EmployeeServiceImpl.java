@@ -4,9 +4,13 @@ import io.classicmodels.DAO.EmployeeDAO;
 import io.classicmodels.entity.Employee;
 import io.classicmodels.service.EmployeeService;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Remote
+@Stateless
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Inject

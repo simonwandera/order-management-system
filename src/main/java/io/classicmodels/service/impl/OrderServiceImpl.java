@@ -4,9 +4,13 @@ import io.classicmodels.DAO.OrderDAO;
 import io.classicmodels.entity.Order;
 import io.classicmodels.service.OrderService;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Remote
+@Stateless
 public class OrderServiceImpl implements OrderService {
 
     @Inject

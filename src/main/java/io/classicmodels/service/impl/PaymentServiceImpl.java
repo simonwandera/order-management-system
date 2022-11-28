@@ -4,9 +4,13 @@ import io.classicmodels.DAO.PaymentDAO;
 import io.classicmodels.entity.Payment;
 import io.classicmodels.service.PaymentService;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Remote
+@Stateless
 public class PaymentServiceImpl implements PaymentService {
 
     @Inject

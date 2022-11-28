@@ -4,9 +4,13 @@ import io.classicmodels.DAO.CustomerDAO;
 import io.classicmodels.entity.Customer;
 import io.classicmodels.service.CustomerService;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+@Remote
+@Stateless
 public class CustomerServiceImpl implements CustomerService {
 
     @Inject
