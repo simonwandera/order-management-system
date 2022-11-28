@@ -4,6 +4,7 @@ import io.classicmodels.entity.Customer;
 import io.classicmodels.service.CustomerService;
 import io.classicmodels.utils.ResponseWrapper;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -14,7 +15,7 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/customers")
 public class Customers {
-    @Inject
+    @EJB
     private CustomerService customerService;
 
     @GET
