@@ -1,5 +1,6 @@
 package io.classicmodels.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -31,9 +32,11 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "productLine", referencedColumnName = "productLine")
+    @JsonbTransient
     private ProductLine productline;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonbTransient
     private List<OrderDetail> orderDetail;
 
     public String getProductName() {

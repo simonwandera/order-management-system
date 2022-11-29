@@ -1,6 +1,5 @@
 package io.classicmodels.entity;
 
-import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,10 +12,9 @@ public class ProductLine implements Serializable {
     @Id
     @Size(max = 50)
     @Column(name = "productLine", nullable = false, length = 50)
-    @JsonbProperty(value = "productLine")
-    private String id;
+    private String productLine;
 
-    @Column(name = "textDescription")
+    @Column(name = "textDescription", length = 4000)
     private String textDescription;
     @Column(name = "htmlDescription")
     private String htmlDescription;
@@ -25,12 +23,12 @@ public class ProductLine implements Serializable {
     @OneToMany(mappedBy = "productline", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> products;
 
-    public String getId() {
-        return id;
+    public String getProductLine() {
+        return productLine;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductLine(String id) {
+        this.productLine = id;
     }
 
     public List<Product> getProducts() {

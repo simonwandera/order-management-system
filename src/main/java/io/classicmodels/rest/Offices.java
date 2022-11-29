@@ -1,8 +1,6 @@
 package io.classicmodels.rest;
 
-import io.classicmodels.entity.Employee;
 import io.classicmodels.entity.Office;
-import io.classicmodels.service.EmployeeService;
 import io.classicmodels.service.OfficeService;
 import io.classicmodels.utils.ResponseWrapper;
 

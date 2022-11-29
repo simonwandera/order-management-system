@@ -3,7 +3,6 @@ package io.classicmodels.DAO.impl;
 import io.classicmodels.DAO.OrderDAO;
 import io.classicmodels.entity.Order;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 

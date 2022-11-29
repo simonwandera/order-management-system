@@ -4,7 +4,6 @@ import io.classicmodels.DAO.OrderDetailDAO;
 import io.classicmodels.entity.Order;
 import io.classicmodels.entity.OrderDetail;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 

@@ -13,11 +13,14 @@ import javax.ws.rs.core.Response;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Path("/products")
 public class Products {
 
     @EJB
     private ProductService productService;
 
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAllProduct() {
         return Response.status(Response.Status.OK).entity(productService.getAllProducts()).build();

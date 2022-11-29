@@ -3,7 +3,6 @@ package io.classicmodels.DAO.impl;
 import io.classicmodels.DAO.EmployeeDAO;
 import io.classicmodels.entity.Employee;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 

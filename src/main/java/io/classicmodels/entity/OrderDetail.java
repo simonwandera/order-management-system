@@ -9,11 +9,17 @@ import java.math.BigDecimal;
 @Table(name = "orderdetails")
 public class OrderDetail implements Serializable {
 
+
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
     @JsonbProperty(value = "orderNumber")
     private Order order;
+
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "productCode", referencedColumnName = "productCode", nullable = false)
+    private Product product;
 
     @Column(name = "quantityOrdered")
     private Integer quantityOrdered;
@@ -21,10 +27,6 @@ public class OrderDetail implements Serializable {
     private BigDecimal priceEach;
     @Column(name = "orderLineNumber")
     private short orderLineNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "productCode", referencedColumnName = "productCode")
-    private Product product;
 
     public void setQuantityOrdered(Integer quantityOrdered) {
         this.quantityOrdered = quantityOrdered;
