@@ -1,6 +1,7 @@
 package io.classicmodels.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
@@ -34,11 +35,11 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "productLine", referencedColumnName = "productLine")
-    @JsonBackReference
+    @JsonManagedReference
     private ProductLine productline;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonbTransient
+    @JsonBackReference
     private List<OrderDetail> orderDetail;
 
     public String getProductName() {

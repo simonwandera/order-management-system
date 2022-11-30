@@ -7,9 +7,11 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -44,14 +46,12 @@ public class Order implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerNumber")
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("customerNumber")
+    @JsonManagedReference
     private Customer customer;
 
-//    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JsonbTransient
-//    private List<OrderDetail> orderDetail;
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<OrderDetail> orderDetail;
 
 
     public Integer getOrderNumber() {
@@ -109,12 +109,12 @@ public class Order implements Serializable {
         this.shippedDate = shippedDate;
     }
 
-//    public List<OrderDetail> getOrderDetail() {
-//        return orderDetail;
-//    }
-//
-//    public void setOrderDetail(List<OrderDetail> orderDetail) {
-//        this.orderDetail = orderDetail;
-//    }
+    public List<OrderDetail> getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(List<OrderDetail> orderDetail) {
+        this.orderDetail = orderDetail;
+    }
 
 }

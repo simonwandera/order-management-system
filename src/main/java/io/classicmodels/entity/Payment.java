@@ -1,6 +1,7 @@
 package io.classicmodels.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -29,6 +30,7 @@ public class Payment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber", nullable = false)
+    @JsonManagedReference
     private Customer customer;
 
     public String getCheckNumber() {

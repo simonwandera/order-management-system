@@ -1,6 +1,7 @@
 package io.classicmodels.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
@@ -15,13 +16,13 @@ public class OrderDetail implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
-    @JsonbProperty(value = "orderNumber")
-    @JsonBackReference
+    @JsonManagedReference
     private Order order;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "productCode", referencedColumnName = "productCode", nullable = false)
+    @JsonManagedReference
     private Product product;
 
     @Column(name = "quantityOrdered")

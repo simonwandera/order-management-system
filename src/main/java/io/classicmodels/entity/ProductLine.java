@@ -1,5 +1,7 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class ProductLine implements Serializable {
     @Column(name = "image")
     private String image;
     @OneToMany(mappedBy = "productline", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Product> products;
 
     public String getProductLine() {
