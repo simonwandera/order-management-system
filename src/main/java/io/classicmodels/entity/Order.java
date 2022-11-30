@@ -1,10 +1,15 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -16,24 +21,37 @@ public class Order implements Serializable {
     private Integer orderNumber;
 
     @Column(name = "orderDate")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate orderDate;
 
     @Column(name = "requiredDate")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate requiredDate;
 
     @Column(name = "shippedDate")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate shippedDate;
     @Column(name = "status")
     private String status;
     @Column(name = "comments")
     private String comments;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customerNumber")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("customerNumber")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetail;
+//    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonbTransient
+//    private List<OrderDetail> orderDetail;
 
 
     public Integer getOrderNumber() {
@@ -91,12 +109,12 @@ public class Order implements Serializable {
         this.shippedDate = shippedDate;
     }
 
-    public List<OrderDetail> getOrderDetail() {
-        return orderDetail;
-    }
-
-    public void setOrderDetail(List<OrderDetail> orderDetail) {
-        this.orderDetail = orderDetail;
-    }
+//    public List<OrderDetail> getOrderDetail() {
+//        return orderDetail;
+//    }
+//
+//    public void setOrderDetail(List<OrderDetail> orderDetail) {
+//        this.orderDetail = orderDetail;
+//    }
 
 }

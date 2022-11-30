@@ -1,5 +1,7 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,7 +34,7 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "productLine", referencedColumnName = "productLine")
-    @JsonbTransient
+    @JsonBackReference
     private ProductLine productline;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

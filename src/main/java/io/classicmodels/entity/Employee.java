@@ -1,6 +1,10 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -24,16 +28,19 @@ public class Employee implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "reportsTo", referencedColumnName = "employeeNumber", nullable = true)
+    @JsonManagedReference
     Employee reportsTo;
 
     @Column(name = "jobTitle")
     private String jobTitle;
 
-    @OneToMany(mappedBy = "salesRep", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "salesRep", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Customer> customers;
 
     @ManyToOne
     @JoinColumn(name = "officeCode", referencedColumnName = "officeCode", nullable = false)
+    @JsonManagedReference
     private Office office;
 
     public Integer getEmployeeNumber() {

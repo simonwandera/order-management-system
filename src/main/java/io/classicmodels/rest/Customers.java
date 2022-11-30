@@ -5,7 +5,6 @@ import io.classicmodels.service.CustomerService;
 import io.classicmodels.utils.ResponseWrapper;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

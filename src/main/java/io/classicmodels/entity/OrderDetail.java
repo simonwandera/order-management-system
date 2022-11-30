@@ -1,5 +1,7 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +16,7 @@ public class OrderDetail implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
     @JsonbProperty(value = "orderNumber")
+    @JsonBackReference
     private Order order;
 
     @Id

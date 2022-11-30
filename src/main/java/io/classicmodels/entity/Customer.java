@@ -1,6 +1,9 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -38,15 +41,18 @@ public class Customer implements Serializable {
     @Column(name = "creditLimit")
     private BigDecimal creditLimit;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "salesRepEmployeeNumber", referencedColumnName = "employeeNumber")
+    @JsonBackReference
     private Employee salesRep;
 
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonbTransient
     private List<Order> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonbTransient
     private List<Payment> payments;
 
     public void setCustomerNumber(Integer customerNumber) {

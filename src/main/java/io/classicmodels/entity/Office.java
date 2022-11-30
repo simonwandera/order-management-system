@@ -1,5 +1,7 @@
 package io.classicmodels.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -29,6 +31,7 @@ public class Office implements Serializable {
     private String territory;
 
     @OneToMany(mappedBy = "office", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Employee> employees;
 
     public String getOfficeCode() {
