@@ -12,15 +12,14 @@ import java.math.BigDecimal;
 @Table(name = "orderdetails")
 public class OrderDetail implements Serializable {
 
-
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber", nullable = false)
     @JsonManagedReference
     private Order order;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "productCode", referencedColumnName = "productCode", nullable = false)
     @JsonManagedReference
     private Product product;
