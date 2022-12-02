@@ -1,6 +1,7 @@
 package io.classicmodels.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.json.bind.annotation.JsonbProperty;
@@ -47,8 +48,9 @@ public class Customer implements Serializable {
     private Employee salesRep;
 
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
+    @JsonIgnore
     private List<Order> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
