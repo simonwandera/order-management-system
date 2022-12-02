@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+
 @Path("/employees")
 public class Employees {
 
@@ -20,7 +21,16 @@ public class Employees {
 
     @GET
     public Response getAllEmployees() {
-        return Response.status(Response.Status.OK).entity(employeeService.getAllEmployees()).build();
+        return Response
+                .status(Response.Status.OK)
+                .entity(employeeService.getAllEmployees())
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Headers",
+                        "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Methods",
+                        "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .build();
     }
 
     @GET
