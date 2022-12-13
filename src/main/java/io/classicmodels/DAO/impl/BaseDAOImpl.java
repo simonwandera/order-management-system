@@ -34,6 +34,7 @@ public class BaseDAOImpl<T, ID> implements BaseDAO<T, ID> {
     @Override
     public List<T> listAll() {
         return (List<T>) entityManager.createQuery("SELECT t FROM " + entityClass.getSimpleName() + " t", entityClass)
+
                 .getResultList();
     }
 

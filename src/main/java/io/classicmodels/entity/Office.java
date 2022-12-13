@@ -30,9 +30,7 @@ public class Office implements Serializable {
     @Column(name = "territory")
     private String territory;
 
-    @OneToMany(mappedBy = "office", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference
-    private List<Employee> employees;
+
 
     public String getOfficeCode() {
         return officeCode;
@@ -106,11 +104,4 @@ public class Office implements Serializable {
         this.territory = territory;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }

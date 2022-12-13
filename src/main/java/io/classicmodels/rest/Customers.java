@@ -23,7 +23,7 @@ public class Customers {
     }
 
     @GET
-    @Path("/{customerNumber}")
+    @Path("/{customerNumber}/")
     public Response getCustomer(@PathParam("customerNumber") Integer customerNumber) {
         return Response.status(Response.Status.OK).entity(customerService.getCustomer(customerNumber)).build();
     }

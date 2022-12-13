@@ -18,6 +18,7 @@ public class Order implements Serializable {
 
     @Id
     @Column(name = "orderNumber", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonbProperty(value = "orderNumber")
     private Integer orderNumber;
 
