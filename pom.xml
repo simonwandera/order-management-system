@@ -7,11 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>order-management-system Maven Webapp</name>
   <url>http://maven.apache.org</url>
-
+<properties>
    <skipTests>true</skipTests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <junit-jupiter.version>5.7.0-RC1</junit-jupiter.version>
         <javaee-api.version>8.0.1</javaee-api.version>
         <mysql-connector-java.version>8.0.20</mysql-connector-java.version>
@@ -33,7 +33,7 @@
         <replacer.version>1.5.3</replacer.version>
         <version.shrinkwrap.resolvers>3.1.4</version.shrinkwrap.resolvers>
 
-
+</properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
